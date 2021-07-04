@@ -26,12 +26,14 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color.blue.edgesIgnoringSafeArea(.all)
+            LinearGradient(gradient: Gradient(colors: [Color.blue, Color.black]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 30) {
                 VStack {
                     Text("Tap the flag of")
                     Text(countries[correctAnswer])
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
                 }
                 .foregroundColor(.white)
                 
@@ -41,6 +43,9 @@ struct ContentView: View {
                     }, label: {
                         Image(countries[number])
                             .renderingMode(.original)
+                            .clipShape(Capsule())
+                            .overlay(Capsule().stroke(Color.black, lineWidth: 1))
+                            .shadow(color: .black, radius: 2)
                     })
                 }
                 
