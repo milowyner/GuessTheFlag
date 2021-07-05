@@ -14,7 +14,6 @@ struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var scoreTitle = ""
-    @State private var scoreMessage = ""
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
@@ -26,7 +25,6 @@ struct ContentView: View {
                 score -= 50
             }
         }
-        scoreMessage = "Your score is \(score)"
         showingAlert = true
     }
     
@@ -46,7 +44,6 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                 }
-                .foregroundColor(.white)
                 
                 ForEach(0..<3) { number in
                     Button(action: {
@@ -60,11 +57,18 @@ struct ContentView: View {
                     })
                 }
                 
+                HStack(spacing: 0) {
+                    Text("Your score is: ")
+                    Text("\(score)")
+                        .fontWeight(.bold)
+                }
+                
                 Spacer()
             }
+            .foregroundColor(.white)
         }
         .alert(isPresented: $showingAlert, content: {
-            Alert(title: Text(scoreTitle), message: Text(scoreMessage), dismissButton: .default(Text("Play again"), action: {
+            Alert(title: Text(scoreTitle), dismissButton: .default(Text("Continue"), action: {
                 askQuestion()
             }))
         })
