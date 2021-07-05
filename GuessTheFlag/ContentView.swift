@@ -9,13 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showingAlert = false
+    @State private var score = 0
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var scoreTitle = ""
+    @State private var scoreMessage = ""
     
     func flagTapped(_ number: Int) {
-        scoreTitle = "\(number == correctAnswer ? "Correct" : "Incorrect")!"
+        if number == correctAnswer {
+            scoreTitle = "Correct!"
+            score += 100
+        } else {
+            scoreTitle = "Incorrect!"
+            if score >= 50 {
+                score -= 50
+            }
+        }
+        scoreMessage = "Your score is \(score)"
         showingAlert = true
     }
     
@@ -53,7 +64,7 @@ struct ContentView: View {
             }
         }
         .alert(isPresented: $showingAlert, content: {
-            Alert(title: Text(scoreTitle), message: Text("Your score is ???"), dismissButton: .default(Text("Play again"), action: {
+            Alert(title: Text(scoreTitle), message: Text(scoreMessage), dismissButton: .default(Text("Play again"), action: {
                 askQuestion()
             }))
         })
