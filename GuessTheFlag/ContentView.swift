@@ -8,19 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showingAlert = false
-    @State private var score = 0
-    
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
+    
+    @State private var score = 0
     @State private var scoreTitle = ""
+    @State private var scoreMessage = ""
+    
+    @State private var showingAlert = false
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct!"
+            scoreMessage = "You gained 100 points!"
             score += 100
         } else {
             scoreTitle = "Incorrect!"
+            scoreMessage = "That's the flag of \(countries[number]). You lost 50 points."
             if score >= 50 {
                 score -= 50
             }
@@ -68,7 +72,7 @@ struct ContentView: View {
             .foregroundColor(.white)
         }
         .alert(isPresented: $showingAlert, content: {
-            Alert(title: Text(scoreTitle), dismissButton: .default(Text("Continue"), action: {
+            Alert(title: Text(scoreTitle), message: Text(scoreMessage), dismissButton: .default(Text("Continue"), action: {
                 askQuestion()
             }))
         })
