@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05AF0CB22695110000C64A1E /* FlagImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF0CB12695110000C64A1E /* FlagImage.swift */; };
 		05D7B534268FE69D00DA9F86 /* GuessTheFlagApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D7B533268FE69D00DA9F86 /* GuessTheFlagApp.swift */; };
 		05D7B536268FE69D00DA9F86 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D7B535268FE69D00DA9F86 /* ContentView.swift */; };
 		05D7B538268FE6A000DA9F86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05D7B537268FE6A000DA9F86 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05AF0CB12695110000C64A1E /* FlagImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagImage.swift; sourceTree = "<group>"; };
 		05D7B530268FE69D00DA9F86 /* GuessTheFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessTheFlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D7B533268FE69D00DA9F86 /* GuessTheFlagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheFlagApp.swift; sourceTree = "<group>"; };
 		05D7B535268FE69D00DA9F86 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			children = (
 				05D7B533268FE69D00DA9F86 /* GuessTheFlagApp.swift */,
 				05D7B535268FE69D00DA9F86 /* ContentView.swift */,
+				05AF0CB12695110000C64A1E /* FlagImage.swift */,
 				05D7B537268FE6A000DA9F86 /* Assets.xcassets */,
 				05D7B53C268FE6A000DA9F86 /* Info.plist */,
 				05D7B539268FE6A000DA9F86 /* Preview Content */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05D7B536268FE69D00DA9F86 /* ContentView.swift in Sources */,
+				05AF0CB22695110000C64A1E /* FlagImage.swift in Sources */,
 				05D7B534268FE69D00DA9F86 /* GuessTheFlagApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
