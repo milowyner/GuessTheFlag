@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
+    @State private var wrongAnswer: Int?
     
     @State private var score = 0
     @State private var scoreTitle = ""
@@ -30,10 +31,6 @@ struct ContentView: View {
                 flagOpacity = 0.25
             }
             flagRotation = 0
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                showingAlert = true
-            }
         } else {
             scoreTitle = "Incorrect!"
             scoreMessage = "That's the flag of \(countries[number]). You lost 50 points."
@@ -41,6 +38,13 @@ struct ContentView: View {
                 score -= 50
             }
             
+            withAnimation {
+                wrongAnswer = number
+            }
+            wrongAnswer = nil
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             showingAlert = true
         }
     }
@@ -73,6 +77,7 @@ struct ContentView: View {
                                 axis: (x: 0, y: 1, z: 0)
                             )
                             .opacity(number != correctAnswer ? flagOpacity : 1)
+                            .modifier(Shake(toggle: number == wrongAnswer))
                     })
                 }
                 
