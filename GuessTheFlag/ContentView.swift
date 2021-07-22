@@ -16,20 +16,31 @@ struct ContentView: View {
     @State private var scoreMessage = ""
     
     @State private var showingAlert = false
+    @State private var flagRotation = 0.0
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct!"
             scoreMessage = "You gained 100 points!"
             score += 100
+            
+            withAnimation {
+                flagRotation = 360
+            }
+            flagRotation = 0
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                showingAlert = true
+            }
         } else {
             scoreTitle = "Incorrect!"
             scoreMessage = "That's the flag of \(countries[number]). You lost 50 points."
             if score >= 50 {
                 score -= 50
             }
+            
+            showingAlert = true
         }
-        showingAlert = true
     }
     
     func askQuestion() {
@@ -54,6 +65,10 @@ struct ContentView: View {
                         flagTapped(number)
                     }, label: {
                         FlagImage(country: countries[number])
+                            .rotation3DEffect(
+                                .degrees(number == correctAnswer ? flagRotation : 0),
+                                axis: (x: 0, y: 1, z: 0)
+                            )
                     })
                 }
                 
