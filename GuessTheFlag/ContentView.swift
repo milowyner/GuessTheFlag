@@ -17,6 +17,7 @@ struct ContentView: View {
     
     @State private var showingAlert = false
     @State private var flagRotation = 0.0
+    @State private var flagOpacity = 1.0
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
@@ -26,6 +27,7 @@ struct ContentView: View {
             
             withAnimation {
                 flagRotation = 360
+                flagOpacity = 0.25
             }
             flagRotation = 0
             
@@ -46,6 +48,7 @@ struct ContentView: View {
     func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        flagOpacity = 1
     }
     
     var body: some View {
@@ -69,6 +72,7 @@ struct ContentView: View {
                                 .degrees(number == correctAnswer ? flagRotation : 0),
                                 axis: (x: 0, y: 1, z: 0)
                             )
+                            .opacity(number != correctAnswer ? flagOpacity : 1)
                     })
                 }
                 
